@@ -30,9 +30,10 @@
         </h3>
     </div>
 
+    <div id="javascriptAlert" class="alert alert-danger"><strong>JavaScript is essential for YouFeed to run.</strong> Please enable it in your browser settings.</div>
     <div id="alert"></div> <!-- add class="alert alert-danger" -->
     <p>YouFeed takes a YouTube channel or playlist link and turns it into a feedly page that you can subscribe to.</p>
-    <div class="visible-md visible-lg row callout">
+    <div id="bookmarkletCallout" class="visible-md visible-lg row callout">
       <div class="col-md-9">
         <h4>Have you tried the YouFeed bookmarklet?</h4>
         <p>Drag this to the bookmarks bar for one-click YouTube to feedly conversion.</p>
@@ -46,7 +47,7 @@
 
     <div class="row">
       <div class="col-sm-9">
-        <input id="yfinput" type="text" class="input-lg form-control" placeholder="e.g. http://www.youtube.com/user/charlieissocoollike/videos">
+        <input id="yfinput" type="text" class="input-lg form-control">
       </div>
       <div class="col-sm-3">
         <button id="yfbutton" type="button" class="btn btn-lg btn-danger center-block">Click here!</button>
@@ -60,7 +61,7 @@
     <div class="footer">
       <p>This website does not use cookies or server-side scripts. <a href="#" data-toggle="modal" data-target="#privacyModal">Find out more</a>.</p>
       <p>If a URL you submit doesn't work as expected, please <a class="contactLink">let me know</a>.</p>
-      <p>YouFeed is an open-source project by <a href="https://twitter.com/danielthepope">@danielthepope</a> that makes it easier to subscibe to feeds using feedly.</p>
+      <p>YouFeed is an open-source project by <a href="https://twitter.com/danielthepope">@danielthepope</a> that makes it easier to subscibe to feeds using <a href="https://feedly.com">feedly</a>.</p>
     </div>
 
     <!-- Modal -->
