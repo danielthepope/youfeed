@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	var currentVersion = '2';
+
 	$('#javascriptAlert').remove();
 	$('#helpLink').tooltip();
 	$('#bookmarklet').tooltip();
@@ -6,15 +8,32 @@ $(document).ready(function() {
 	$('.contactLink').attr('href', 'https://docs.google.com/forms/d/1abSkucu9d7AMH0YJ9LBk2kDPdMZFExXd_xLytOXbvC4/viewform');
 	$('#yfinput').focus();
 
+	var version = getVar('v');
 	var yfvar = getVar('yfinput');
 	if (yfvar != null) {
 		$('#bookmarkletCallout').remove();
 		$('#yfinput').val(yfvar);
+	} else { // For people on bookmarklet v1
+		var ytvar = getVar('ytinput');
+		if (ytvar != null) {
+			version = '1';
+			$('#yfinput').val(ytvar);
+		}
+	}
+	if (version == null) version = currentVersion;
+	if (version < currentVersion) {
+		showAlert("<p><strong>Update your bookmarklet!</strong></p><p>You are using an out of date bookmarklet. Please remove it and drag over the new one.</p>");
+	} else {
 		convertLink();
 	}
 });
 
 var convertLink = function() {
+	if ($('#yfinput').val() == '') {
+		$('#yfinput').focus();
+		return;
+	}
+
 	var input = $('#yfinput').val();
 	var feedlyurl = '';
 	var urlarr = input.split('?')[0].split('/');
@@ -38,12 +57,17 @@ var convertLink = function() {
 	if (feedlyurl != '') {
 		window.location.replace(feedlyurl);
 	} else { // Display error message
-		$('#alert').addClass('alert alert-danger');
-		$('#alert').append("<strong>Something's not right here. Make sure you put the entire web address.</strong><br/>Sometimes you need to click on the user's \"Videos\" tab to give a full address like https://www.youtube.com/user/charlieissocoollike/videos");
+		showAlert("<strong>Something's not right here. Make sure you put the entire web address.</strong><br/>Sometimes you need to click on the user's \"Videos\" tab to give a full address like https://www.youtube.com/user/charlieissocoollike/videos");
 	}
-}
+};
 
 $('#yfbutton').on('click', convertLink);
+
+$('#yfinput').on('keyup', function(e) {
+	if (e.keyCode == 13) {
+		$('#yfbutton').trigger('click');
+	}
+});
 
 function getUrlVars() {
     var vars = [], hash;
@@ -52,15 +76,20 @@ function getUrlVars() {
     {
         hash = hashes[i].split('=');
         vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
+        vars[hash[0]] = decodeURIComponent(hash[1]);
     }
     return vars;
-}
+};
 
 function getVar(property) {
 	return getUrlVars()[property];
-}
+};
 
 function startsWithList(element) {
 	return element.toLowerCase().indexOf('list=') == 0;
+};
+
+function showAlert(message) {
+	$('#alert').addClass('alert alert-danger');
+	$('#alert').html(message);
 }
