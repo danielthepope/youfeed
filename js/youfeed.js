@@ -1,7 +1,6 @@
 $(document).ready(function() {
 	var currentVersion = '2';
 
-	$('#javascriptAlert').remove();
 	$('#helpLink').tooltip();
 	$('#bookmarklet').tooltip();
 	$('#yfinput').tooltip();
