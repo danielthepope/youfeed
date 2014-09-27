@@ -34,7 +34,7 @@
       <div id="javascriptAlert" class="alert alert-danger"><strong>JavaScript is essential for YouFeed to run.</strong> Please enable it in your browser settings.</div>
     </noscript>
     <div id="alert"></div> <!-- add class="alert alert-danger" -->
-    <p>YouFeed takes a YouTube channel or playlist link and turns it into a feedly page that you can subscribe to.</p>
+    <p class="lead">YouFeed takes a YouTube channel or playlist link and turns it into a feedly page that you can subscribe to.</p>
     <div id="bookmarkletCallout" class="visible-md visible-lg row callout">
       <div class="col-md-9">
         <h4>Have you tried the YouFeed bookmarklet?</h4>
@@ -45,19 +45,25 @@
       </div>
     </div>
 
-    <h3>Paste in the YouTube channel/playlist page URL</h3>
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <h3>Paste in the YouTube channel/playlist page URL</h3>
+      </div>
+    </div>
 
     <div class="row">
-      <div class="col-sm-9">
-        <input id="yfinput" type="text" class="input-lg form-control">
-      </div>
-      <div class="col-sm-3">
-        <button id="yfbutton" type="button" class="btn btn-lg btn-danger center-block">Click here!</button>
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="input-group has-error">
+          <input id="yfinput" type="text" class="input-lg form-control">
+          <span class="input-group-btn">
+            <button id="yfbutton" type="button" class="btn btn-lg btn-danger">Click here!</button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="row">
-        <p class="col-sm-9">Insert the URL for a YouTube channel or playlist, and the corresponding Feedly page will appear in a new tab.</p>
-        <p class="col-sm-9">For more info, click Help at the top of this page.</p>
+        <p class="col-sm-8 col-sm-offset-1">Insert the URL for a YouTube channel or playlist, and the corresponding feedly page will appear in a new tab.</p>
+        <p class="col-sm-8 col-sm-offset-1">For more info, click Help at the top of this page.</p>
     </div>
 
     <div class="footer">
