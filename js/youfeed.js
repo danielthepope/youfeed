@@ -34,31 +34,57 @@ var convertLink = function() {
 	}
 
 	var input = $('#yfinput').val();
-	var feedlyurl = '';
+	openInFeedly(input);
+}
+
+function openInFeedly(input) {
+	var rssUrl = '';
+	if (input.indexOf('//www.youtube.com/') != -1) {
+		rssUrl = youtube(input);
+	// } else if () { // New patterns here
+
+	} else {
+		// Unrecognised or unsupported URL pattern :(
+		showAlert("<strong>Something's not right here. Make sure you put the entire web address.</strong><br/>Sometimes you need to click on the user's \"Videos\" tab to give a full address like https://www.youtube.com/user/charlieissocoollike/videos");
+		return;
+	}
+
+	var feedlyUrl = feedly(rssUrl);
+	//window.location.replace(feedlyUrl);
+	window.open(feedlyUrl);
+}
+
+function feedly(rss) {
+	return "http://feedly.com/#subscription%2Ffeed%2F" + encodeURIComponent(rss);
+}
+
+
+// APPLICATION-SPECIFIC CONVERSION FUNCTIONS //
+
+function youtube(input) {
+	var rssUrl = '';
 	var urlarr = input.split('?')[0].split('/');
 	// Search for playlist ID
 	var playlistPos = input.indexOf('list=');
 	var userPos = urlarr.indexOf('user');
 	if (userPos == -1) userPos = urlarr.indexOf('channel');
 
-	if (playlistPos != -1) { // Founc a playlist
+	if (playlistPos != -1) { // Found a playlist
 		var processedUrl = input.replace('?', '&');
 		urlarr = processedUrl.split('&');
 		var listId = urlarr.filter(startsWithList)[0].substring(5);
-		feedlyurl = "https://feedly.com/home#subscription%2Ffeed%2Fhttp%3A%2F%2Fgdata.youtube.com%2Ffeeds%2Fapi%2Fplaylists%2F" + listId;
+		rssUrl = "http://gdata.youtube.com/feeds/api/playlists/" + listId;
 	} else if (userPos != -1) { // Look for a user ID
 		var userIndex = urlarr.indexOf('user');
 		var channel = urlarr[userIndex + 1];
-		feedlyurl = "https://feedly.com/#subscription%2ffeed%2Fhttp%3A%2F%2Fgdata.youtube.com%2Ffeeds%2Fbase%2Fusers%2F" + channel + "%2Fuploads%3Falt%3Drss%26v%3D2%26orderby%3Dpublished%26client%3Dytapi-youtube-profile";
+		rssUrl = "http://gdata.youtube.com/feeds/base/users/" + channel + "/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile";
 	}
 
-	// Open page
-	if (feedlyurl != '') {
-		window.location.replace(feedlyurl);
-	} else { // Display error message
-		showAlert("<strong>Something's not right here. Make sure you put the entire web address.</strong><br/>Sometimes you need to click on the user's \"Videos\" tab to give a full address like https://www.youtube.com/user/charlieissocoollike/videos");
-	}
+	return rssUrl;
 };
+
+
+// EVENTS //
 
 $('#yfbutton').on('click', convertLink);
 
@@ -67,6 +93,9 @@ $('#yfinput').on('keyup', function(e) {
 		$('#yfbutton').trigger('click');
 	}
 });
+
+
+// OTHER USEFUL FUNCTIONS //
 
 function getUrlVars() {
     var vars = [], hash;
