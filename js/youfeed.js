@@ -19,25 +19,26 @@ $(document).ready(function() {
 			$('#yfinput').val(ytvar);
 		}
 	}
-	if (version == null) version = currentVersion;
-	if (version < currentVersion) {
-		showAlert("<p><strong>Update your bookmarklet!</strong></p><p>You are using an out of date bookmarklet. Please remove it and drag over the new one.</p>");
-	} else {
-		convertLink();
+	if (version != null) { // null means we haven't used the bookmarklet
+		if (version < currentVersion) {
+			showAlert("<p><strong>Update your bookmarklet!</strong></p><p>You are using an out of date bookmarklet. Please remove it and drag over the new one.</p>");
+		} else {
+			convertLink(false);
+		}
 	}
 });
 
-var convertLink = function() {
+function convertLink(newTab) {
 	if ($('#yfinput').val() == '') {
 		$('#yfinput').focus();
 		return;
 	}
 
 	var input = $('#yfinput').val();
-	openInFeedly(input);
+	openInFeedly(input, newTab);
 }
 
-function openInFeedly(input) {
+function openInFeedly(input, newTab) {
 	var rssUrl = '';
 	if (input.indexOf('//www.youtube.com/') != -1) {
 		rssUrl = youtube(input);
@@ -50,8 +51,11 @@ function openInFeedly(input) {
 	}
 
 	var feedlyUrl = feedly(rssUrl);
-	//window.location.replace(feedlyUrl);
-	window.open(feedlyUrl);
+	if (newTab) {
+		window.open(feedlyUrl);
+	} else {
+		window.location.replace(feedlyUrl);
+	}
 }
 
 function feedly(rss) {
@@ -86,7 +90,9 @@ function youtube(input) {
 
 // EVENTS //
 
-$('#yfbutton').on('click', convertLink);
+$('#yfbutton').on('click', function() {
+	convertLink(true);
+});
 
 $('#yfinput').on('keyup', function(e) {
 	if (e.keyCode == 13) {
