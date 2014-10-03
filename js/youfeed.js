@@ -42,6 +42,11 @@ function openInFeedly(input, newTab) {
 	var rssUrl = '';
 	if (input.indexOf('//www.youtube.com/') != -1) {
 		rssUrl = youtube(input);
+	} else if (input.indexOf('.wordpress.com') != -1) {
+		rssUrl = wordpress(input);
+	} else if (input.indexOf('.blogspot.') != -1) {
+		rssUrl = blogspot(input);
+
 	// } else if () { // New patterns here
 
 	} else {
@@ -86,6 +91,18 @@ function youtube(input) {
 
 	return rssUrl;
 };
+
+function wordpress(input) {
+	var rssUrl = '';
+	// TODO this function
+	return rssUrl;
+}
+
+function blogspot(input) {
+	var rssUrl = '';
+	// TODO this function
+	return rssUrl;
+}
 
 
 // EVENTS //
