@@ -42,10 +42,14 @@ function openInFeedly(input, newTab) {
 	var rssUrl = '';
 	if (input.indexOf('//www.youtube.com/') != -1) {
 		rssUrl = youtube(input);
+	// TODO uncomment when feature is completed.
 	} else if (input.indexOf('.wordpress.com') != -1) {
 		rssUrl = wordpress(input);
-	} else if (input.indexOf('.blogspot.') != -1) {
-		rssUrl = blogspot(input);
+	// } else if (input.indexOf('.blogspot.') != -1) {
+	// 	rssUrl = blogspot(input);
+	// } else if (input.indexOf('.tumblr.') != -1) {
+	// 	rssUrl = tumblr(input);
+	// }
 
 	// } else if () { // New patterns here
 
@@ -109,6 +113,12 @@ function wordpress(input) {
 }
 
 function blogspot(input) {
+	var rssUrl = '';
+	// TODO this function
+	return rssUrl;
+}
+
+function tumblr(input) {
 	var rssUrl = '';
 	// TODO this function
 	return rssUrl;
