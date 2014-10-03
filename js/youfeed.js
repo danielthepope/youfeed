@@ -94,7 +94,17 @@ function youtube(input) {
 
 function wordpress(input) {
 	var rssUrl = '';
-	// TODO this function
+	// Search for /category/ first, then otherwise take the domain and add /feed/atom/ instead
+	var username = input.split('//')[1].split('.')[0];
+	if (input.indexOf('/category/') != -1) { // Category present
+		var category = input.split('/category/')[1].split('/')[0];
+		rssUrl = 'http://' + username + '.wordpress.com/category/' + category + '/feed/';
+	} else if (input.indexOf('/tag/') != -1) {
+		var tag = input.split('/tag/')[1].split('/')[0];
+		rssUrl = 'http://' + username + '.wordpress.com/tag/' + tag + '/feed/';
+	} else {
+		rssUrl = 'http://' + username + '.wordpress.com/feed/atom/';
+	}
 	return rssUrl;
 }
 
