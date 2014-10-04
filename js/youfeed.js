@@ -5,6 +5,7 @@ $(document).ready(function() {
 	$('#bookmarklet').tooltip();
 	$('#yfinput').tooltip();
 	$('.contactLink').attr('href', 'https://docs.google.com/forms/d/1abSkucu9d7AMH0YJ9LBk2kDPdMZFExXd_xLytOXbvC4/viewform');
+	$('#bookmarklet').attr('href', 'javascript:(' + test.toString() + ')()');
 	$('#yfinput').focus();
 
 	var version = getVar('v');
@@ -178,3 +179,8 @@ function showAlert(message) {
 	$('#alert').addClass('alert alert-danger');
 	$('#alert').html(message);
 }
+
+var test = function() {
+	window.open("http://www.youfeed.uk/?v=3&yfinput="+encodeURIComponent(document.URL));
+	return false;
+};
