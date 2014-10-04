@@ -45,11 +45,10 @@ function openInFeedly(input, newTab) {
 	// TODO uncomment when feature is completed.
 	} else if (input.indexOf('.wordpress.com') != -1) {
 		rssUrl = wordpress(input);
-	// } else if (input.indexOf('.blogspot.') != -1) {
-	// 	rssUrl = blogspot(input);
-	// } else if (input.indexOf('.tumblr.') != -1) {
-	// 	rssUrl = tumblr(input);
-	// }
+	} else if (input.indexOf('.blogspot.') != -1) {
+		rssUrl = blogspot(input);
+	} else if (input.indexOf('.tumblr.') != -1) {
+		rssUrl = tumblr(input);
 
 	// } else if () { // New patterns here
 
@@ -114,13 +113,28 @@ function wordpress(input) {
 
 function blogspot(input) {
 	var rssUrl = '';
-	// TODO this function
+	var username = input.split('//')[1].split('.')[0];
+	if (input.indexOf('/label/') != -1) { // Open the label feed
+		var label = input.split('/label/')[1].split('/')[0];
+		rssUrl = 'http://' + username + '.blogspot.com/feeds/posts/default/-/' + label + '/';
+	} else {
+		rssUrl = 'http://' + username + '.blogspot.com/feeds/posts/default';
+	}
 	return rssUrl;
 }
 
 function tumblr(input) {
 	var rssUrl = '';
-	// TODO this function
+	var username = input.split('//')[1].split('.')[0];
+	if (username == 'www') { // Look at the rest of the URL instead
+		username = input.split('/blog/')[1].split('/')[0];
+	}
+	if (input.indexOf('/tagged/') != -1) { // URL has a tag
+		var tag = input.split('/tagged/')[1].split('/')[0];
+		rssUrl = 'http://' + username + '.tumblr.com/tagged/' + tag + '/rss';
+	} else {
+		rssUrl = 'http://' + username + '.tumblr.com/rss';
+	}
 	return rssUrl;
 }
 
