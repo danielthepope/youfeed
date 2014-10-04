@@ -42,10 +42,14 @@ function openInFeedly(input, newTab) {
 	var rssUrl = '';
 	if (input.indexOf('//www.youtube.com/') != -1) {
 		rssUrl = youtube(input);
+	// TODO uncomment when feature is completed.
 	} else if (input.indexOf('.wordpress.com') != -1) {
 		rssUrl = wordpress(input);
-	} else if (input.indexOf('.blogspot.') != -1) {
-		rssUrl = blogspot(input);
+	// } else if (input.indexOf('.blogspot.') != -1) {
+	// 	rssUrl = blogspot(input);
+	// } else if (input.indexOf('.tumblr.') != -1) {
+	// 	rssUrl = tumblr(input);
+	// }
 
 	// } else if () { // New patterns here
 
@@ -94,11 +98,27 @@ function youtube(input) {
 
 function wordpress(input) {
 	var rssUrl = '';
-	// TODO this function
+	// Search for /category/ first, then otherwise take the domain and add /feed/atom/ instead
+	var username = input.split('//')[1].split('.')[0];
+	if (input.indexOf('/category/') != -1) { // Category present
+		var category = input.split('/category/')[1].split('/')[0];
+		rssUrl = 'http://' + username + '.wordpress.com/category/' + category + '/feed/';
+	} else if (input.indexOf('/tag/') != -1) {
+		var tag = input.split('/tag/')[1].split('/')[0];
+		rssUrl = 'http://' + username + '.wordpress.com/tag/' + tag + '/feed/';
+	} else {
+		rssUrl = 'http://' + username + '.wordpress.com/feed/atom/';
+	}
 	return rssUrl;
 }
 
 function blogspot(input) {
+	var rssUrl = '';
+	// TODO this function
+	return rssUrl;
+}
+
+function tumblr(input) {
 	var rssUrl = '';
 	// TODO this function
 	return rssUrl;
