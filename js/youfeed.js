@@ -1,17 +1,23 @@
 $(document).ready(function() {
-	var currentVersion = '2';
+	var currentVersion = '3';
 
 	$('#helpLink').tooltip();
 	$('#bookmarklet').tooltip();
 	$('#yfinput').tooltip();
 	$('.contactLink').attr('href', 'https://docs.google.com/forms/d/1abSkucu9d7AMH0YJ9LBk2kDPdMZFExXd_xLytOXbvC4/viewform');
-	$('#bookmarklet').attr('href', 'javascript:(' + test.toString() + ')()');
+	var bookmarklet = bookmarkletFunction.toString();
+	if (window.location.href.indexOf('youfeedbeta') != -1
+		|| window.location.href.indexOf('file:///') != -1) {
+			bookmarklet = bookmarklet.replace('http://www.youfeed.uk', 'http://youfeedbeta.azurewebsites.net');
+			$('#bookmarklet').text('YouFeed beta');
+	}
+	$('#bookmarklet').attr('href', 'javascript:(' + bookmarklet + ')()');
 	$('#yfinput').focus();
 
 	var version = getVar('v');
 	var yfvar = getVar('yfinput');
 	if (yfvar != null) {
-		$('#bookmarkletCallout').remove();
+		$('#bookmarkletCallout').hide();
 		$('#yfinput').val(yfvar);
 	} else { // For people on bookmarklet v1
 		var ytvar = getVar('ytinput');
@@ -22,6 +28,7 @@ $(document).ready(function() {
 	}
 	if (version != null) { // null means we haven't used the bookmarklet
 		if (version < currentVersion) {
+			$('#bookmarkletCallout').show();
 			showAlert("<p><strong>Update your bookmarklet!</strong></p><p>You are using an out of date bookmarklet. Please remove it and drag over the new one.</p>");
 		} else {
 			convertLink(false);
@@ -180,7 +187,7 @@ function showAlert(message) {
 	$('#alert').html(message);
 }
 
-var test = function() {
+var bookmarkletFunction = function() {
 	window.open("http://www.youfeed.uk/?v=3&yfinput="+encodeURIComponent(document.URL));
 	return false;
 };
