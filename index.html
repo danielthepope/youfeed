@@ -23,7 +23,7 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="#" data-toggle="tooltip" data-placement="bottom" title="coming soon" id="helpLink">Help</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#helpModal">Help</a></li>
           <li><a href="https://feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fyoufeed.tumblr.com%2Frss">News</a></li>
           <li><a class="contactLink">Fan mail</a></li>
         </ul>
@@ -71,11 +71,10 @@
 
     <div class="footer">
       <p>This website does not use cookies or server-side scripts. <a href="#" data-toggle="modal" data-target="#privacyModal">Find out more</a>.</p>
-      <p>If a URL you submit doesn't work as expected, please <a class="contactLink">let me know</a>.</p>
+      <p>If a URL you submit doesn't work as expected, or if you just want to say hi, please <a class="contactLink">get in touch</a>.</p>
       <p>YouFeed is an <a href="https://github.com/danielthepope/youfeed">open source project</a> by <a href="https://twitter.com/danielthepope">@danielthepope</a> that makes it easier to subscibe to feeds using <a href="https://feedly.com">feedly</a>.</p>
     </div>
 
-    <!-- Modal -->
     <div class="modal fade" id="privacyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -88,6 +87,33 @@
             <p>You're welcome.</p>
             <p>All data processing takes place solely on your computer, and no cookies of any kind are stored or eaten.</p>
             <p>However, this does mean that if anything goes wrong, I don't receive any automatic notification. Therefore, if you attempt to open a link that you think should work but doesn't, please <a class="contactLink">get in touch</a> making sure you include the broken link.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Help</h4>
+          </div>
+          <div class="modal-body">
+            <h3>Using the bookmarklet</h3>
+            <p>I put an animated demo of how to use the bookmarklet on the <a href="http://youfeed.tumblr.com/post/97896970690/show-the-bookmark-bar-go-to-youfeed-and-drag-in" target="_blank">YouFeed Tumblr page</a>.</p>
+            <h3>Or, the copy and paste method</h3>
+            <p>If you're watching a video on YouTube, and you decide to subscribe to that user on feedly, first click onto the user's channel page.</p>
+            <p class="page-header"><a href="http://www.youtube.com/user/ScottBradleeLovesYa"><img class="img-responsive center-block" alt="click youtube username" title="Scott Bradlee's channel is just amazing." src="images/01-ytvid.png" /></a></p>
+            <p>Then copy the URL of the channel's page</p>
+            <p class="page-header"><img class="img-responsive center-block" alt="Copy the channel's URL" src="images/02-channel.png" /></p>
+            <p>Paste it into YouFeed then click the red button</p>
+            <p class="page-header"><img class="img-responsive center-block" alt="Paste into YouFeed" src="images/03-paste.png" /></p>
+            <p>The channel will open up in Feedly, which you can then subscribe to by clicking Follow.</p>
+            <p><img class="img-responsive center-block" alt="Channel opens in Feedly" src="images/04-feedly.png" /></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
