@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="YouFeed, YouTube, feedly, RSS" />
-    <meta name="description" content="Subscribe to YouTube users and playlists through feedly." />
+    <meta name="keywords" content="YouFeed, YouTube, feedly, RSS, playlist, Wordpress, Blogspot, Tumblr" />
+    <meta name="description" content="Subscribe to the feeds that matter to you. Add YouTube users or specific playlists through feedly. Find the feeds of blog posts under certain categories." />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <title>YouFeed</title>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
@@ -37,11 +37,11 @@
       <div id="javascriptAlert" class="alert alert-danger"><strong>JavaScript is essential for YouFeed to run.</strong> Please enable it in your browser settings.</div>
     </noscript>
     <div id="alert"></div> <!-- add class="alert alert-danger" -->
-    <p class="lead">YouFeed takes a YouTube channel or playlist link and turns it into a feedly page that you can subscribe to.</p>
+    <p class="lead text-center">Subscribe to the feeds that matter to you.</p>
     <div id="bookmarkletCallout" class="visible-md visible-lg row callout">
       <div class="col-md-9">
         <h4>Have you tried the YouFeed bookmarklet?</h4>
-        <p>Drag this to the bookmarks bar for one-click YouTube to feedly conversion.</p>
+        <p>Drag this to the bookmarks bar for one-click feedly conversion.</p>
       </div>
       <div class="col-md-3">
         <p><a id="bookmarklet" class="bookmarklet" href="#">Open in feedly</a></p>
@@ -50,7 +50,7 @@
 
     <div class="row">
       <div class="col-sm-10 col-sm-offset-1">
-        <h3>Paste in the YouTube channel/playlist page URL</h3>
+        <h3>Paste in the page URL</h3>
       </div>
     </div>
 
@@ -59,14 +59,23 @@
         <div class="input-group has-error">
           <input id="yfinput" type="text" class="input-lg form-control">
           <span class="input-group-btn">
-            <button id="yfbutton" type="button" class="btn btn-lg btn-danger">Click here!</button>
+            <button id="yfbutton" type="button" class="btn btn-lg btn-danger">Open in feedly</button>
           </span>
         </div>
       </div>
     </div>
     <div class="row">
-        <p class="col-sm-8 col-sm-offset-1">Insert the URL for a YouTube channel or playlist, and the corresponding feedly page will appear in a new tab.</p>
-        <p class="col-sm-8 col-sm-offset-1">For more info, click Help at the top of this page.</p>
+      <div class="col-sm-8 col-sm-offset-1">
+        <h4>New sites added!</h4>
+        <p>Now you can subscribe to feeds from a variety of places:</p>
+        <ul>
+          <li><strong>YouTube</strong> channels and playlists</li>
+          <li><strong>Blogspot</strong> authors and posts with a specific label</li>
+          <li><strong>Wordpress</strong> authors, categories and tags</li>
+          <li><strong>Tumblr</strong> authors and tags</li>
+        </ul>
+        <p>For more info, click on help at the top of this page.</p>
+      </div>
     </div>
 
     <div class="footer">
