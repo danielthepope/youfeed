@@ -14,7 +14,7 @@ void setup() {
 }
 
 void draw() {
-  background(#eeeeee); //f7f7f7
+  background(#f7f7f7); //f7f7f7
   n1.render();
   n2.render();
   n3.render();
