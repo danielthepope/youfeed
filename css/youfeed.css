@@ -11,11 +11,13 @@ body {
   z-index: 0;
   width: 1366px;
   margin: auto;
+  pointer-events: none;
 }
 
 #youfeedjs {
   position: absolute;
   top: 138px;
+  z-index: -1;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
