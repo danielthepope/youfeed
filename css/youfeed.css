@@ -8,15 +8,17 @@ body {
 }
 
 #animationContainer {
-  z-index: 0;
+  display: block;
+  position: relative;
+  top: -280px;
+  left: -390px;
+  z-index: -1;
   width: 1366px;
-  margin: auto;
+  height: 1px;
   pointer-events: none;
 }
 
 #youfeedjs {
-  position: absolute;
-  top: 138px;
   z-index: -1;
 }
 
