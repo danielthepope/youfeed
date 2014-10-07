@@ -31,7 +31,7 @@ class feed {
   float px, py;
   int age;
   int maxage;
-  boolean debug = true;
+  boolean debug = false;
   color col;
   
   public feed(float startx, float starty, float endx,
