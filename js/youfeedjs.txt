@@ -1,16 +1,16 @@
 float px, py;
 node n1, n2, n3, n4, n5;
 void setup() {
-  size(1366,500);
+  size(1566,700);
   stroke(0,255,0);
   strokeWeight(3);
   noFill();
   // frameRate(30);
-  n1 = new node(200, 50, 400, 250, 3, color(226,43,38), 200, true);
-  n2 = new node(50, 200, 400, 250, 3, color(33,117,155), 200, true);
-  n3 = new node(100, 300, 400, 250, 3, color(52,70,94), 200, true);
-  n4 = new node(250, 400, 400, 250, 3, color(255,102,0), 200, true);
-  n5 = new node(930, 250, 1300, 250, 12, #6cc655, 0, false);
+  n1 = new node(300, 150, 500, 350, 3, color(226,43,38), 200, true);
+  n2 = new node(150, 300, 500, 350, 3, color(33,117,155), 200, true);
+  n3 = new node(200, 400, 500, 350, 3, color(52,70,94), 200, true);
+  n4 = new node(350, 500, 500, 350, 3, color(255,102,0), 200, true);
+  n5 = new node(1030, 350, 1400, 350, 12, #6cc655, 0, false);
 }
 
 void draw() {
@@ -31,7 +31,7 @@ class feed {
   float px, py;
   int age;
   int maxage;
-  boolean debug = false;
+  boolean debug = true;
   color col;
   
   public feed(float startx, float starty, float endx,
