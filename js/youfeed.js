@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var currentVersion = '3';
+	var currentVersion = '4';
 
 	$('#helpLink').tooltip();
 	$('#bookmarklet').tooltip();
@@ -188,6 +188,14 @@ function showAlert(message) {
 }
 
 var bookmarkletFunction = function() {
-	window.open("http://www.youfeed.uk/?v=3&yfinput="+encodeURIComponent(document.URL));
-	return false;
+	if (document.URL.split('//')[1].split('/')[0].indexOf('youfeed') != -1) {
+		window.open('https://feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fyoufeed.tumblr.com%2Frss');
+		return false;
+	} else if (document.URL.split('//')[1].split('/')[0].indexOf('feedly.com') != -1) {
+		alert('No feedly-ception allowed!'); //maybe play the BWAAAARRRR noise
+		return false;
+	} else {
+		window.open("http://danielthepope.github.io/youfeed?v=3&yfinput="+encodeURIComponent(document.URL));
+		return false;
+	}
 };
