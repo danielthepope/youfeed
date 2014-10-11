@@ -10,7 +10,7 @@ void setup() {
   n2 = new node(150, 300, 500, 350, 3, color(33,117,155), 200, true);
   n3 = new node(200, 400, 500, 350, 3, color(52,70,94), 200, true);
   n4 = new node(350, 500, 500, 350, 3, color(255,102,0), 200, true);
-  n5 = new node(1030, 350, 1400, 350, 12, #6cc655, 0, false);
+  n5 = new node(1020, 350, 1400, 350, 12, #6cc655, 0, false);
 }
 
 void draw() {
@@ -107,8 +107,8 @@ class node {
   }
   
   public void render() {
-    startx = origx - wiggle/2 + (wiggle * noise(seed + (frameCount / 400.0)));
-    starty = origy - wiggle/2 + (wiggle * noise(2*seed +(frameCount / 400.0)));
+    startx = origx - wiggle/2 + (wiggle * noise(seed + (frameCount / 600.0)));
+    starty = origy - wiggle/2 + (wiggle * noise(2*seed +(frameCount / 600.0)));
     for (int i = 0; i < feedCount; i++) {
       f[i].render();
       if (f[i].update()) {
