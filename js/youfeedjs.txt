@@ -1,3 +1,9 @@
+/* @pjs preload="../images/icon_youtube.png"; */
+/* @pjs preload="../images/icon_tumblr.png"; */
+/* @pjs preload="../images/icon_blogspot.png"; */
+/* @pjs preload="../images/icon_wordpress.png"; */
+/* @pjs preload="../images/icon_feedly.png"; */
+
 float px, py;
 node n1, n2, n3, n4, n5;
 void setup() {
