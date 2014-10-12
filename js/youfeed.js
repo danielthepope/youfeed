@@ -62,7 +62,7 @@ function openInFeedly(input, newTab) {
 
 	} else {
 		// Unrecognised or unsupported URL pattern :(
-		showAlert("<strong>Something's not right here. Make sure you put the entire web address.</strong><br/>Sometimes you need to click on the user's \"Videos\" tab to give a full address like https://www.youtube.com/user/charlieissocoollike/videos");
+		showAlert("<strong>Something's not right here. Make sure you put the entire web address.</strong><br/>Sometimes you need to click on the user's \"Videos\" tab to give a full address like<br/>https://www.youtube.com/user/charlieissocoollike/videos");
 		return;
 	}
 
