@@ -6,10 +6,10 @@ void setup() {
   strokeWeight(3);
   noFill();
   n1 = new node(300, 150, 500, 350, 3, color(226,43,38), 200);
-  n2 = new node(150, 300, 500, 350, 3, color(33,117,155), 200);
-  n3 = new node(200, 400, 500, 350, 3, color(52,70,94), 200);
-  n4 = new node(350, 500, 500, 350, 3, color(255,102,0), 200);
-  n5 = new node(1020, 350, 1400, 350, 12, #6cc655, -1);
+  n2 = new node(150, 300, 500, 350, 3, color(52,70,94), 200);
+  n3 = new node(200, 400, 500, 350, 3, color(255,102,0), 200);
+  n4 = new node(350, 500, 500, 350, 3, color(33,117,155), 200);
+  n5 = new node(1020, 350, 1300, 350, 12, #6cc655, -50);
 }
 
 void draw() {
@@ -34,10 +34,10 @@ class feed {
     maxage = int(random(120,240));
     this.startx = startx;
     this.starty = starty;
-    // this.endx = endx;
-    // this.endy = endy;
-    this.endx = endx - wiggle/2 + (wiggle * noise(seed + ((frameCount + maxage) / 600.0)));
-    this.endy = endy - wiggle/2 + (wiggle * noise(2 * seed + ((frameCount + maxage) / 600.0)));
+    this.endx = endx;
+    this.endy = endy;
+//    this.endx = endx - wiggle/2 + (wiggle * noise(seed + ((frameCount + maxage) / 600.0)));
+//    this.endy = endy - wiggle/2 + (wiggle * noise(2 * seed + ((frameCount + maxage) / 600.0)));
     x1 = random(startx, startx + ((endx - startx) / 2));
     x2 = random(startx + ((endx - startx) / 2), startx + ((endx - startx) / 3));
     y1 = random(starty - 200, starty + 200);
@@ -97,7 +97,7 @@ class node {
     f = new feed[feedCount];
     for (int i = 0; i < feedCount; i++) {
       f[i] = new feed(startx, starty, endx, endy, col, (wiggle < 0) ? -wiggle : 0, seed);
-      f[i].age = random(0,240);
+      f[i].age = int(random(0,240));
     }
   }
   
