@@ -5,11 +5,12 @@ void setup() {
   stroke(0,255,0);
   strokeWeight(3);
   noFill();
-  n1 = new node(300, 150, 500, 350, 3, color(226,43,38), 200);
-  n2 = new node(150, 300, 500, 350, 3, color(52,70,94), 200);
-  n3 = new node(200, 400, 500, 350, 3, color(255,102,0), 200);
-  n4 = new node(350, 500, 500, 350, 3, color(33,117,155), 200);
-  n5 = new node(1020, 350, 1300, 350, 12, #6cc655, -50);
+  imageMode(CENTER);
+  n1 = new node(300, 150, 500, 350, 3, color(226,43,38), 200, "icon_youtube.png");
+  n2 = new node(150, 300, 500, 350, 3, color(52,70,94), 200, "icon_tumblr.png");
+  n3 = new node(200, 400, 500, 350, 3, color(255,102,0), 200, "icon_blogspot.png");
+  n4 = new node(350, 500, 500, 350, 3, color(33,117,155), 200, "icon_wordpress.png");
+  n5 = new node(1020, 350, 1300, 350, 12, #6cc655, -50, "icon_feedly.png");
 }
 
 void draw() {
@@ -81,9 +82,10 @@ class node {
   int seed;
   int wiggle;
   boolean debug = false;
+  PImage icon;
   
   public node(float x1, float y1, float x2, float y2, int feeds,
-              color c, int w) {
+              color c, int w, string iconUrl) {
     startx = x1;
     starty = y1;
     endx = x2;
@@ -95,6 +97,7 @@ class node {
     seed = int(random(100, 600));
     feedCount = feeds;
     f = new feed[feedCount];
+    if (iconUrl != null) icon = loadImage("../images/" + iconUrl);
     for (int i = 0; i < feedCount; i++) {
       f[i] = new feed(startx, starty, endx, endy, col, (wiggle < 0) ? -wiggle : 0, seed);
       f[i].age = int(random(0,240));
@@ -129,9 +132,15 @@ class node {
     }
 
     if (wiggle >= 0) {
-      ellipse(startx, starty, 70, 70);
+      translate(startx, starty);
+      ellipse(0, 0, 70, 70);
+      if (icon != null) image(icon, 0, 0);
+      translate(-startx, -starty)
     } else {
-      ellipse(endx, endy, 100, 100);
+      translate(endx, endy);
+      ellipse(0, 0, 100, 100);
+      if (icon != null) image(icon, 0, 0);
+      translate(-endx, -endy)
     }
   }
 }
