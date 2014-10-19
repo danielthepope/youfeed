@@ -28,7 +28,7 @@
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="#" data-toggle="modal" data-target="#helpModal">Help</a></li>
+          <li><a id="helpButton" href="#" data-toggle="modal" data-target="#helpModal">Help</a></li>
           <li><a href="https://feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fyoufeed.tumblr.com%2Frss">News</a></li>
           <li><a class="contactLink">Fan mail</a></li>
         </ul>
@@ -128,13 +128,13 @@
             <p>I put an animated demo of how to use the bookmarklet on the <a href="http://youfeed.tumblr.com/post/97896970690/show-the-bookmark-bar-go-to-youfeed-and-drag-in" target="_blank">YouFeed Tumblr page</a>.</p>
             <h3>Or, the copy and paste method</h3>
             <p>If you're watching a video on YouTube, and you decide to subscribe to that user on feedly, first click onto the user's channel page.</p>
-            <p class="page-header"><a href="http://www.youtube.com/user/ScottBradleeLovesYa"><img class="img-responsive center-block" alt="click youtube username" title="Scott Bradlee's channel is just amazing." src="images/01-ytvid.png" /></a></p>
+            <p class="page-header"><a href="http://www.youtube.com/user/ScottBradleeLovesYa"><span id="img1" alt="click youtube username" title="Scott Bradlee's channel is just amazing." src="images/01-ytvid.png"></span></a></p>
             <p>Then copy the URL of the channel's page</p>
-            <p class="page-header"><img class="img-responsive center-block" alt="Copy the channel's URL" src="images/02-channel.png" /></p>
+            <p class="page-header"><span id="img2" alt="Copy the channel's URL" src="images/02-channel.png"></span></p>
             <p>Paste it into YouFeed then click the red button</p>
-            <p class="page-header"><img class="img-responsive center-block" alt="Paste into YouFeed" src="images/03-paste.png" /></p>
+            <p class="page-header"><span id="img3" alt="Paste into YouFeed" src="images/03-paste.png"></span></p>
             <p>The channel will open up in Feedly, which you can then subscribe to by clicking Follow.</p>
-            <p><img class="img-responsive center-block" alt="Channel opens in Feedly" src="images/04-feedly.png" /></p>
+            <p><span id="img4" alt="Channel opens in Feedly" src="images/04-feedly.png"></span></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

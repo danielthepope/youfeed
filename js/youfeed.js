@@ -101,7 +101,7 @@ function youtube(input) {
 	}
 
 	return rssUrl;
-};
+}
 
 function wordpress(input) {
 	var rssUrl = '';
@@ -160,6 +160,41 @@ $('#yfinput').on('keyup', function(e) {
 });
 
 
+// LOADING IMAGES ON CLICK //
+
+$('#helpButton').on('click', function() {
+	loadImage($('#img1'), $('#img1').attr('src'));
+	loadImage($('#img2'), $('#img2').attr('src'));
+	loadImage($('#img3'), $('#img3').attr('src'));
+	loadImage($('#img4'), $('#img4').attr('src'));
+});
+
+function loadImage(element, source) {
+	if (element.children('img').size() > 0) {
+		if ($(element.children('img').get(0)).attr('src') === source) {
+			// Image already loaded
+			return;
+		} else {
+			// Remove current image and add the new one
+			element.children('img').remove();
+		}
+	}
+	var img = new Image();
+	$(img)
+		.load(function() {
+			$(this).hide();
+			element.append(this);
+			$(this).fadeIn();
+		})
+		.error(function() {
+			console.log('Could not load image ' + source);
+		})
+		.addClass('center-block img-responsive')
+		.attr('src', source)
+		.attr('alt', element.attr('alt'));
+}
+
+
 // OTHER USEFUL FUNCTIONS //
 
 function getUrlVars() {
@@ -172,15 +207,15 @@ function getUrlVars() {
         vars[hash[0]] = decodeURIComponent(hash[1]);
     }
     return vars;
-};
+}
 
 function getVar(property) {
 	return getUrlVars()[property];
-};
+}
 
 function startsWithList(element) {
 	return element.toLowerCase().indexOf('list=') == 0;
-};
+}
 
 function showAlert(message) {
 	$('#alert').addClass('alert alert-danger');
