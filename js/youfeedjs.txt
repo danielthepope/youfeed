@@ -8,9 +8,7 @@ float px, py;
 node n1, n2, n3, n4, n5;
 void setup() {
   size(1566,700);
-  stroke(0,255,0);
-  strokeWeight(3);
-  noFill();
+  background(#f7f7f7);
   imageMode(CENTER);
   n1 = new node(300, 150, 500, 350, 3, color(226,43,38), 200, "icon_youtube.png");
   n2 = new node(150, 300, 500, 350, 3, color(52,70,94), 200, "icon_tumblr.png");
@@ -20,7 +18,7 @@ void setup() {
 }
 
 void draw() {
-  background(#f7f7f7); //f7f7f7
+  background(#f7f7f7);
   n1.render();
   n2.render();
   n3.render();
