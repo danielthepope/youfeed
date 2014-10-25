@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$('.contactLink').attr('href', 'https://docs.google.com/forms/d/1abSkucu9d7AMH0YJ9LBk2kDPdMZFExXd_xLytOXbvC4/viewform');
 	var bookmarklet = bookmarkletFunction.toString();
 	if (window.location.href.indexOf('youfeedbeta') != -1
-		|| window.location.href.indexOf('file:///') != -1) {
+		|| window.location.href.indexOf('localhost') != -1) {
 			bookmarklet = bookmarklet.replace('http://www.youfeed.uk', 'http://youfeedbeta.azurewebsites.net');
 			$('#bookmarklet').text('YouFeed beta');
 	}
@@ -37,7 +37,7 @@ $(document).ready(function() {
 });
 
 function convertLink(newTab) {
-	if ($('#yfinput').val() == '') {
+	if ($('#yfinput').val().trim() == '') {
 		$('#yfinput').focus();
 		return;
 	}
@@ -80,6 +80,7 @@ function feedly(rss) {
 
 
 // APPLICATION-SPECIFIC CONVERSION FUNCTIONS //
+// These functions all take a page URL and return the RSS URL.
 
 function youtube(input) {
 	var rssUrl = '';
@@ -105,7 +106,7 @@ function youtube(input) {
 
 function wordpress(input) {
 	var rssUrl = '';
-	// Search for /category/ first, then otherwise take the domain and add /feed/atom/ instead
+	// Search for /category/ first, then otherwise take the domain and add /feed/ instead
 	var username = input.split('//')[1].split('.')[0];
 	if (input.indexOf('/category/') != -1) { // Category present
 		var category = input.split('/category/')[1].split('/')[0];
@@ -114,7 +115,7 @@ function wordpress(input) {
 		var tag = input.split('/tag/')[1].split('/')[0];
 		rssUrl = 'http://' + username + '.wordpress.com/tag/' + tag + '/feed/';
 	} else {
-		rssUrl = 'http://' + username + '.wordpress.com/feed/atom/';
+		rssUrl = 'http://' + username + '.wordpress.com/feed/';
 	}
 	return rssUrl;
 }
@@ -193,6 +194,6 @@ var bookmarkletFunction = function() {
 	} else if (document.URL.split('//')[1].split('/')[0].indexOf('feedly.com') != -1) {
 		alert('No feedly-ception allowed!');
 	} else {
-		window.open("http://www.youfeed.uk/?v=4&yfinput="+encodeURIComponent(document.URL));
+		window.open("http://www.youfeed.uk/?v=4&yfinput=" + encodeURIComponent(document.URL));
 	}
 };
