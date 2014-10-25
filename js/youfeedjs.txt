@@ -1,52 +1,54 @@
+/* @pjs preload="../images/icon_youtube.png"; */
+/* @pjs preload="../images/icon_tumblr.png"; */
+/* @pjs preload="../images/icon_blogspot.png"; */
+/* @pjs preload="../images/icon_wordpress.png"; */
+/* @pjs preload="../images/icon_feedly.png"; */
+
 float px, py;
 node n1, n2, n3, n4, n5;
 void setup() {
   size(1566,700);
-  stroke(0,255,0);
-  strokeWeight(3);
-  noFill();
-  // frameRate(30);
-  n1 = new node(300, 150, 500, 350, 3, color(226,43,38), 200, true);
-  n2 = new node(150, 300, 500, 350, 3, color(33,117,155), 200, true);
-  n3 = new node(200, 400, 500, 350, 3, color(52,70,94), 200, true);
-  n4 = new node(350, 500, 500, 350, 3, color(255,102,0), 200, true);
-  n5 = new node(1030, 350, 1400, 350, 12, #6cc655, 0, false);
+  background(#f7f7f7);
+  imageMode(CENTER);
+  n1 = new node(300, 150, 500, 350, 3, color(226,43,38), 200, "icon_youtube.png");
+  n2 = new node(150, 300, 500, 350, 3, color(52,70,94), 200, "icon_tumblr.png");
+  n3 = new node(200, 400, 500, 350, 3, color(255,102,0), 200, "icon_blogspot.png");
+  n4 = new node(350, 500, 500, 350, 3, color(33,117,155), 200, "icon_wordpress.png");
+  n5 = new node(1020, 350, 1300, 350, 12, #6cc655, -50, "icon_feedly.png");
 }
 
 void draw() {
-  background(#f7f7f7); //f7f7f7
+  background(#f7f7f7);
   n1.render();
   n2.render();
   n3.render();
   n4.render();
   n5.render();
-  // noStroke();
-  // fill(255);
-  // rect(400, 225, 550, 50, 5);
 }
 
 class feed {
   float startx, starty, endx, endy;
   float x1, y1, x2, y2;
   float px, py;
-  int age;
-  int maxage;
+  int age, maxage;
   boolean debug = false;
   color col;
   
   public feed(float startx, float starty, float endx,
-              float endy, color c) {
+              float endy, color c, int wiggle, int seed) {
+    maxage = int(random(120,240));
     this.startx = startx;
     this.starty = starty;
     this.endx = endx;
     this.endy = endy;
+//    this.endx = endx - wiggle/2 + (wiggle * noise(seed + ((frameCount + maxage) / 600.0)));
+//    this.endy = endy - wiggle/2 + (wiggle * noise(2 * seed + ((frameCount + maxage) / 600.0)));
     x1 = random(startx, startx + ((endx - startx) / 2));
     x2 = random(startx + ((endx - startx) / 2), startx + ((endx - startx) / 3));
     y1 = random(starty - 200, starty + 200);
     y2 = random(endy - 100, endy + 100);
     col = c;
     age = 0;
-    maxage = int(random(120,240));
   }
   
   public void render() {
@@ -62,7 +64,6 @@ class feed {
       strokeWeight(1);
       bezier(startx, starty, x1, y1, x2, y2, endx, endy);
     }
-//    fill(0);
     noFill();
     strokeWeight(3);
     px = bezierPoint(startx, x1, x2, endx, (age % maxage) / float(maxage));
@@ -84,45 +85,66 @@ class node {
   color col;
   int seed;
   int wiggle;
-  boolean renderNode;
+  boolean debug = false;
+  PImage icon;
   
   public node(float x1, float y1, float x2, float y2, int feeds,
-              color c, int w, boolean r) {
+              color c, int w, string iconUrl) {
     startx = x1;
     starty = y1;
-    origx = x1;
-    origy = y1;
     endx = x2;
     endy = y2;
     col = c;
     wiggle = w;
-    seed = int(random(600));
+    origx = (w < 0) ? x2 : x1;
+    origy = (w < 0) ? y2 : y1;
+    seed = int(random(100, 600));
     feedCount = feeds;
-    renderNode = r;
     f = new feed[feedCount];
+    if (iconUrl != null) icon = loadImage("../images/" + iconUrl);
     for (int i = 0; i < feedCount; i++) {
-      f[i] = new feed(startx, starty, endx, endy, col);
-      f[i].age = random(0,60);
+      f[i] = new feed(startx, starty, endx, endy, col, (wiggle < 0) ? -wiggle : 0, seed);
+      f[i].age = int(random(0,240));
     }
   }
   
   public void render() {
-    startx = origx - wiggle/2 + (wiggle * noise(seed + (frameCount / 400.0)));
-    starty = origy - wiggle/2 + (wiggle * noise(2*seed +(frameCount / 400.0)));
+    if (wiggle >= 0) {
+      startx = origx - wiggle/2 + (wiggle * noise(seed + (frameCount / 600.0)));
+      starty = origy - wiggle/2 + (wiggle * noise(2 * seed + (frameCount / 600.0)));
+    } else {
+      endx = origx - wiggle/2 + (wiggle * noise(seed + (frameCount / 600.0)));
+      endy = origy - wiggle/2 + (wiggle * noise(2 * seed + (frameCount / 600.0)));
+    }
     for (int i = 0; i < feedCount; i++) {
       f[i].render();
       if (f[i].update()) {
-        f[i] = new feed(startx, starty, endx, endy, col);
+        f[i] = new feed(startx, starty, 
+                        wiggle < 0 ? origx : endx, wiggle < 0 ? origy : endy,
+                        col, (wiggle < 0) ? -wiggle : 0, seed);
       }
     }
-    if (renderNode) {
-      noStroke();
-      fill(col);
-      ellipse(startx, starty, 70, 70);
+
+    if (debug) {
+      stroke(col);
+      noFill();
+      point(startx, starty);
+      point(endx, endy);
     } else {
       noStroke();
       fill(col);
-      ellipse(endx, endy, 100, 100);
+    }
+
+    if (wiggle >= 0) {
+      translate(startx, starty);
+      ellipse(0, 0, 70, 70);
+      if (icon != null) image(icon, 0, 0);
+      translate(-startx, -starty)
+    } else {
+      translate(endx, endy);
+      ellipse(0, 0, 100, 100);
+      if (icon != null) image(icon, 0, 0);
+      translate(-endx, -endy)
     }
   }
 }
