@@ -133,6 +133,6 @@ function tumblr(input) {
 		return;
 	}
 	else {
-		openInFeedly(yfvar, true);
+		openInFeedly(yfvar, false);
 	}
 }());
