@@ -33,15 +33,16 @@ function openInFeedly(input, newTab) {
 
 	} else {
 		// Unrecognised or unsupported URL pattern :(
-		showAlert("<strong>Something's not right here. Make sure you put the entire web address.</strong><br/>Sometimes you need to click on the user's \"Videos\" tab to give a full address like<br/>https://www.youtube.com/user/charlieissocoollike/videos");
-		return;
+		return false;
 	}
 
 	var feedlyUrl = feedly(rssUrl);
 	if (newTab) {
 		window.open(feedlyUrl);
+		return true;
 	} else {
 		window.location.replace(feedlyUrl);
+		return true;
 	}
 }
 
@@ -132,6 +133,6 @@ function tumblr(input) {
 		return;
 	}
 	else {
-		openInFeedly(yfvar, false);
+		openInFeedly(yfvar, true);
 	}
 }());

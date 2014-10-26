@@ -38,7 +38,11 @@ function convertLink(newTab) {
 	}
 
 	var input = $('#yfinput').val();
-	openInFeedly(input, newTab);
+	if (openInFeedly(input, newTab)) {
+		showAlert(null);
+	} else {
+		showAlert("<strong>Something's not right here. Make sure you put the entire web address.</strong><br/>Sometimes you need to click on the user's \"Videos\" tab to give a full address like<br/>https://www.youtube.com/user/charlieissocoollike/videos");
+	}
 }
 
 
@@ -93,8 +97,13 @@ function loadImage(element, source) {
 // OTHER USEFUL FUNCTIONS //
 
 function showAlert(message) {
-	$('#alert').addClass('alert alert-danger');
-	$('#alert').html(message);
+	if (message == null) {
+		$('#alert').removeClass('alert alert-danger');
+		$('#alert').html('');
+	} else {
+		$('#alert').addClass('alert alert-danger');
+		$('#alert').html(message);
+	}
 }
 
 var bookmarkletFunction = function() {
