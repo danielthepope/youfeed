@@ -1,8 +1,4 @@
 $(document).ready(function() {
-
-	$('#helpLink').tooltip();
-	$('#bookmarklet').tooltip();
-	$('#yfinput').tooltip();
 	$('.contactLink').attr('href', 'https://docs.google.com/forms/d/1abSkucu9d7AMH0YJ9LBk2kDPdMZFExXd_xLytOXbvC4/viewform');
 	var bookmarklet = bookmarkletFunction.toString();
 	if (window.location.href.indexOf('youfeedbeta') != -1
@@ -16,7 +12,7 @@ $(document).ready(function() {
 	var version = getVar('v');
 	var yfvar = getVar('yfinput');
 	if (yfvar != null) {
-		$('#bookmarkletCallout').hide();
+		$('#bookmarkletCallout').attr('style','display:none !important');
 		$('#yfinput').val(yfvar);
 	} else { // For people on bookmarklet v1
 		var ytvar = getVar('ytinput');
