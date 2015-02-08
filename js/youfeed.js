@@ -108,7 +108,7 @@ function showAlert(message) {
 
 var bookmarkletFunction = function() {
 	if (document.URL.split('//')[1].split('/')[0].indexOf('youfeed') != -1) {
-		window.open('https://feedly.com/#subscription%2Ffeed%2Fhttp%3A%2F%2Fyoufeed.tumblr.com%2Frss');
+		window.open('https://feedly.com/i/subscription/feed/http://youfeed.tumblr.com/rss');
 	} else if (document.URL.split('//')[1].split('/')[0].indexOf('feedly.com') != -1) {
 		alert('No feedly-ception allowed!');
 	} else {
