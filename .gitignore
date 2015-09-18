@@ -1,3 +1,5 @@
 # Terrible Windows files
 thumbs.db
 desktop.ini
+
+node_modules/

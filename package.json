@@ -1,0 +1,23 @@
+{
+  "name": "youfeed",
+  "version": "1.0.0",
+  "description": "A utility to help you turn blog URLs into RSS feeds",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://danielthepope@github.com/danielthepope/youfeed.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danielthepope/youfeed/issues"
+  },
+  "homepage": "https://github.com/danielthepope/youfeed",
+  "devDependencies": {
+    "express": "^4.13.3",
+    "gulp": "^3.9.0"
+  }
+}
