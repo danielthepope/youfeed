@@ -1,25 +1,23 @@
 /* @pjs preload="../images/icon_youtube.png,../images/icon_tumblr.png,../images/icon_blogspot.png,../images/icon_wordpress.png,../images/icon_feedly.png"; */
 
 float px, py;
-node n1, n2, n3, n4, n5;
+node tumblrNode, blogspotNode, wordpressNode, feedlyNode;
 void setup() {
   size(1566,700);
   background(#f7f7f7);
   imageMode(CENTER);
-  n1 = new node(300, 150, 500, 350, 3, color(226,43,38), 200, "icon_youtube.png");
-  n2 = new node(150, 300, 500, 350, 3, color(52,70,94), 200, "icon_tumblr.png");
-  n3 = new node(200, 400, 500, 350, 3, color(255,102,0), 200, "icon_blogspot.png");
-  n4 = new node(350, 500, 500, 350, 3, color(33,117,155), 200, "icon_wordpress.png");
-  n5 = new node(1020, 350, 1300, 350, 12, #6cc655, -50, "icon_feedly.png");
+  tumblrNode = new node(250, 250, 500, 350, 3, color(52,70,94), 200, "icon_tumblr.png");
+  blogspotNode = new node(200, 400, 500, 350, 3, color(255,102,0), 200, "icon_blogspot.png");
+  wordpressNode = new node(350, 500, 500, 350, 3, color(33,117,155), 200, "icon_wordpress.png");
+  feedlyNode = new node(1020, 350, 1300, 350, 9, #6cc655, -50, "icon_feedly.png");
 }
 
 void draw() {
   background(#f7f7f7);
-  n1.render();
-  n2.render();
-  n3.render();
-  n4.render();
-  n5.render();
+  blogspotNode.render();
+  tumblrNode.render();
+  wordpressNode.render();
+  feedlyNode.render();
 }
 
 class feed {

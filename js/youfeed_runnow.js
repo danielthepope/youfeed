@@ -20,7 +20,9 @@ function getVar(property) {
 function openInFeedly(input, newTab) {
 	var rssUrl = '';
 	if (input.indexOf('//www.youtube.com/') != -1) {
-		rssUrl = youtube(input);
+		// YouTube isn't working right now
+		// rssUrl = youtube(input);
+		return false;
 	// TODO uncomment when feature is completed.
 	} else if (input.indexOf('.wordpress.com') != -1) {
 		rssUrl = wordpress(input);
