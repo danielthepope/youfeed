@@ -20,9 +20,7 @@ function getVar(property) {
 function openInFeedly(input, newTab) {
 	var rssUrl = '';
 	if (input.indexOf('//www.youtube.com/') != -1) {
-		// YouTube isn't working right now
-		// rssUrl = youtube(input);
-		return false;
+		rssUrl = youtube(input);
 	// TODO uncomment when feature is completed.
 	} else if (input.indexOf('.wordpress.com') != -1) {
 		rssUrl = wordpress(input);
@@ -62,17 +60,19 @@ function youtube(input) {
 	// Search for playlist ID
 	var playlistPos = input.indexOf('list=');
 	var userPos = urlarr.indexOf('user');
-	if (userPos == -1) userPos = urlarr.indexOf('channel');
+	var channelPos = urlarr.indexOf('channel');
 
-	if (playlistPos != -1) { // Found a playlist
+	if (playlistPos !== -1) { // Found a playlist
 		var processedUrl = input.replace('?', '&');
 		urlarr = processedUrl.split('&');
 		var listId = urlarr.filter(startsWithList)[0].substring(5); // text after 'list='
-		rssUrl = "http://gdata.youtube.com/feeds/api/playlists/" + listId;
-	} else if (userPos != -1) { // Look for a user ID
-		var userIndex = urlarr.indexOf('user');
-		var channel = urlarr[userIndex + 1];
-		rssUrl = "http://gdata.youtube.com/feeds/base/users/" + channel + "/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile";
+		rssUrl = "https://www.youtube.com/feeds/videos.xml?playlist_id=" + listId;
+	} else if (userPos !== -1) { // Look for a user ID
+		var user = urlarr[userPos + 1];
+		rssUrl = "https://www.youtube.com/feeds/videos.xml?user=" + user;
+	} else if (channelPos !== -1) {
+		var channel = urlarr[channelPos + 1];
+		rssUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=" + channel;
 	}
 
 	return rssUrl;
