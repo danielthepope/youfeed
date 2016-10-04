@@ -15,9 +15,5 @@
   "bugs": {
     "url": "https://github.com/danielthepope/youfeed/issues"
   },
-  "homepage": "https://github.com/danielthepope/youfeed",
-  "devDependencies": {
-    "express": "^4.13.3",
-    "gulp": "^3.9.0"
-  }
+  "homepage": "https://github.com/danielthepope/youfeed"
 }
