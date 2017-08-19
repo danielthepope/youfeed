@@ -47,7 +47,8 @@ function openInFeedly(input, newTab) {
 }
 
 function feedly(rss) {
-	return "http://feedly.com/i/subscription/feed/" + rss;
+	var feedlySuffix = encodeURIComponent(rss);
+	return "http://feedly.com/i/subscription/feed%2F" + feedlySuffix;
 }
 
 
