@@ -1,9 +1,9 @@
 {
   "name": "youfeed",
   "version": "1.0.0",
-  "description": "A utility to help you turn blog URLs into RSS feeds",
-  "main": "index.js",
+  "description": "A utility to help you turn YouTube/blog URLs into RSS feeds",
   "scripts": {
+    "start": "http-server .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/danielthepope/youfeed",
   "devDependencies": {
-    "express": "^4.13.3",
-    "gulp": "^3.9.0"
+    "http-server": "^0.10.0"
   }
 }
